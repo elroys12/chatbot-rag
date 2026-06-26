@@ -6,7 +6,7 @@ Proyek ini sekaligus menjadi implementasi nyata dari konversi mata kuliah magang
 
 ---
 
-## 🚀 Fitur Utama
+## Fitur Utama
 
 * **Semantic Search:** Pencarian dokumen referensi berdasarkan kedekatan makna (konteks), bukan sekadar mencocokkan kata kunci (*keyword matching*).
 * **Anti-Hallucination Guardrails:** AI dibatasi secara ketat hanya boleh menjawab berdasarkan dokumen regulasi resmi yang terdaftar di basis data.
@@ -16,7 +16,7 @@ Proyek ini sekaligus menjadi implementasi nyata dari konversi mata kuliah magang
 
 ---
 
-## 🛠️ Arsitektur Teknologi
+## Arsitektur Teknologi
 
 * **Framework:** FastAPI (Python)
 * **LLM & Embedding Engine:** Google Gemini API (`gemini-2.5-flash` & `text-embedding-004`)
@@ -26,7 +26,7 @@ Proyek ini sekaligus menjadi implementasi nyata dari konversi mata kuliah magang
 
 ---
 
-## 📂 Struktur Direktori
+## Struktur Direktori
 
 ```text
 ├── chroma_db_koperasi/   # Folder penyimpanan lokal database vektor ChromaDB
