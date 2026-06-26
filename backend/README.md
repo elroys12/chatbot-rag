@@ -29,8 +29,7 @@ Proyek ini sekaligus menjadi implementasi nyata dari konversi mata kuliah magang
 ## Struktur Direktori
 
 ```text
-├── chroma_db_koperasi/   # Folder penyimpanan lokal database vektor ChromaDB
-├── data_pdf/             # Tempat menyimpan berkas PDF regulasi resmi dinas
+├── dokumen_pdf/          # Tempat menyimpan berkas PDF regulasi resmi dinas
 ├── ingest.py             # Script untuk chunking, embedding, dan pengisian data ke ChromaDB
 ├── main.py               # Aplikasi utama FastAPI (Route handler & logika RAG)
 ├── requirements.txt      # Daftar dependensi library Python
