@@ -1,0 +1,37 @@
+# Legalitas UMKM AI Assistant - Backend (RAG System)
+
+Repository ini berisi sistem backend untuk Chatbot Asisten Digital Resmi Dinas Koperasi dan UKM Provinsi Jawa Timur. Sistem ini dibangun menggunakan arsitektur **RAG (Retrieval-Augmented Generation)** untuk memberikan informasi yang akurat, ramah, dan bebas dari halusinasi AI mengenai prosedur pengurusan NIK, NIB, dan Standar Operasional Prosedur (SOP) dinas bagi pelaku UMKM.
+
+Proyek ini sekaligus menjadi implementasi nyata dari konversi mata kuliah magang: *Kecerdasan Komputasional, Pembelajaran Mesin, Pemrosesan Bahasa Alami, Rekayasa Kebutuhan, serta Virtualisasi & Komputasi Awan*.
+
+---
+
+## 🚀 Fitur Utama
+
+* **Semantic Search:** Pencarian dokumen referensi berdasarkan kedekatan makna (konteks), bukan sekadar mencocokkan kata kunci (*keyword matching*).
+* **Anti-Hallucination Guardrails:** AI dibatasi secara ketat hanya boleh menjawab berdasarkan dokumen regulasi resmi yang terdaftar di basis data.
+* **Persistent Vector Storage:** Menyimpan 555 chunk embedding dokumen secara aman dan permanen menggunakan ChromaDB.
+* **Production-Ready API:** Dibangun dengan FastAPI yang memiliki performa tinggi, validasi skema data yang ketat, dan dokumentasi Swagger otomatis.
+* **Dockerized Infrastructure:** Seluruh lingkungan sistem backend diisolasi menggunakan kontainer Docker untuk kemudahan deployment.
+
+---
+
+## 🛠️ Arsitektur Teknologi
+
+* **Framework:** FastAPI (Python)
+* **LLM & Embedding Engine:** Google Gemini API (`gemini-2.5-flash` & `text-embedding-004`)
+* **Vector Database:** ChromaDB (Persistent Storage)
+* **Containerization:** Docker & Docker Volumes
+* **Frontend Compatibility:** Terintegrasi dengan React.js via konfigurasi CORS Middleware
+
+---
+
+## 📂 Struktur Direktori
+
+```text
+├── chroma_db_koperasi/   # Folder penyimpanan lokal database vektor ChromaDB
+├── data_pdf/             # Tempat menyimpan berkas PDF regulasi resmi dinas
+├── ingest.py             # Script untuk chunking, embedding, dan pengisian data ke ChromaDB
+├── main.py               # Aplikasi utama FastAPI (Route handler & logika RAG)
+├── requirements.txt      # Daftar dependensi library Python
+└── Dockerfile            # Konfigurasi isolasi lingkungan kontainer Docker
