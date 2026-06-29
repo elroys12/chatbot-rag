@@ -31,14 +31,12 @@ app.add_middleware(
 )
 
 # --- MEMUAT DATABASE LOKAL ---
-# Kelas GoogleEmbeddingFunction SUDAH DIHAPUS TOTAL karena tidak digunakan di sini.
 collection = None
 
 try:
     chroma_client = chromadb.PersistentClient(path=DB_PATH)
     
-    # Hanya mengambil koleksi yang ada secara mentah. 
-    # Tidak ada fungsi embedding otomatis yang tumpang tindih lagi.
+    # mengambil koleksi secara mentah. 
     collection = chroma_client.get_collection(name=COLLECTION_NAME)
     
     print(f"Database terhubung. Total data: {collection.count()} chunks.")
@@ -65,7 +63,7 @@ async def chat_endpoint(request: ChatRequest):
         )
         
     try:
-        # A. Proses Vektorisasi Pertanyaan User (Secara Manual)
+        # A. Proses Vektorisasi Pertanyaan User
         response_embedding = client.models.embed_content(
             model=EMBEDDING_MODEL,
             contents=pertanyaan_user,
@@ -91,13 +89,13 @@ async def chat_endpoint(request: ChatRequest):
                     dokumen_referensi += f"\n- {teks_chunk}\n"
                     sumber_terpakai.add(f"{meta.get('sumber')} (Chunk {meta.get('chunk_ke')})")
 
-        # C. GENERATION PROCESS (GEMINI)
+        # C. GENERATION PROCESS
         instruksi_sistem = (
             "Anda adalah asisten AI resmi untuk Dinas Koperasi dan UKM Provinsi Jawa Timur. "
             "Tugas Anda adalah menjawab pertanyaan masyarakat dengan ramah, jelas, dan profesional. "
             "Anda HANYA BOLEH menjawab berdasarkan 'DOKUMEN REFERENSI' resmi yang disediakan di bawah ini. "
             "Jika 'DOKUMEN REFERENSI' kosong atau tidak ada jawabannya, katakan secara jujur: "
-            "'Mohon maaf, informasi tersebut belum tersedia di basis data kami. Anda dapat menghubungi pihak dinas langsung.'\n\n"
+            "'Mohon maaf, informasi tersebut belum tersedia di basis data kami. Anda dapat menghubungi pihak dinas langsung melalui Instagram resmi kami di [@diskopukm_jatim](https://www.instagram.com/diskopukm_jatim).'\n\n"
             f"--- DOKUMEN REFERENSI --- \n{dokumen_referensi}"
         )
 

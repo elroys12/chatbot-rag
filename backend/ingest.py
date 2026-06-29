@@ -129,13 +129,13 @@ if __name__ == "__main__":
         for i in range(0, len(chunks), batch_size):
             batch = chunks[i:i + batch_size]
             try:
-                # 🚀 AMBIL LIST TEKS DARI BATCH
+                # AMBIL LIST TEKS DARI BATCH
                 batch_texts = [item["text"] for item in batch]
                 
-                # 🚀 UBAH TEKS MENJADI VEKTOR MENGGUNAKAN CLASS KUSTOM ANDA
+                # UBAH TEKS MENJADI VEKTOR MENGGUNAKAN CLASS KUSTOM ANDA
                 batch_embeddings = embedding_fn(batch_texts)
                 
-                # 🚀 MASUKKAN KE CHROMADB BERSAMA VEKTORNYA
+                # MASUKKAN KE CHROMADB BERSAMA VEKTORNYA
                 collection.add(
                     ids=[item["id"] for item in batch],
                     embeddings=batch_embeddings,   # <--- TAMBAHKAN PARAMS INI!
@@ -150,11 +150,10 @@ if __name__ == "__main__":
                 print(f"🚨 Gagal pada batch ini ({e}), mencoba memasukkan satu per satu...")
                 for item in batch:
                     try:
-                        # Samakan juga untuk proses fallback satu per satu
                         single_embedding = embedding_fn([item["text"]])
                         collection.add(
                             ids=[item["id"]], 
-                            embeddings=single_embedding, # <--- TAMBAHKAN PARAMS INI!
+                            embeddings=single_embedding,
                             documents=[item["text"]], 
                             metadatas=[item["metadata"]]
                         )
